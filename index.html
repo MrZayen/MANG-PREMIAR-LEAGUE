@@ -488,52 +488,45 @@
             <h2>Reset League</h2>
             <button id="resetLeague">Reset Entire League</button>
         </div>
-        
-
 
         <script>
             const correctPassword = "ADM!N-77GZ-LK90-QXP3-W&9MZ*Y1";
+            //const correctPassword = "q";
             const isAuthenticated = localStorage.getItem("isAuthenticated");
 
             if (!isAuthenticated) {
                 const userInput = prompt(
                     " Enter your admin access key to proceed:"
                 );
-                if(userInput){
-                  if(userInput === correctPassword){
-                    alert("Access granted! ✓")
-                    localStorage.setItem("isAuthenticated", "true");
-                  }else{
-                    alert("Invalid token!")
-                    document.body.innerHTML = "<h4>Access denied! 🖕🖕</h4>";
-                  }
-                }else{
-                  document.body.innerHTML = '<h4>Access denied! <a href="">try again.</a></h4>';
-                }
-
-                /*if (userInput === correctPassword) {
-                    localStorage.setItem("isAuthenticated", "true");
-                    alert("Access granted.");
+                if (userInput) {
+                    if (userInput === correctPassword) {
+                        alert("Access granted! ✓");
+                        localStorage.setItem("isAuthenticated", "true");
+                    } else {
+                        alert("Invalid token!");
+                        document.body.innerHTML =
+                            "<h4>Access denied! 🖕🖕</h4>";
+                    }
                 } else {
-                    alert("Incorrect password! Access denied.");
-                    //window.location.reload()
-                }*/
+                    document.body.innerHTML =
+                        '<h4>Access denied! <a href="">try again.</a></h4>';
+                }
             }
         </script>
-        
+
         <script>
             const isReset = localStorage.getItem("isReset");
             if (isReset !== "true") {
-              localStorage.setItem("isReset", "false");
-            }else{
-              document.body.innerHTML="Session expired!";
+                localStorage.setItem("isReset", "false");
+            } else {
+                 document.body.innerHTML="Session expired!";
             }
-            window.addEventListener("dblclick",  function(){
-              //localStorage.clear();
-              //window.location.reload();
-            })
+            window.addEventListener("dblclick", function () {
+                //localStorage.clear();
+                //window.location.reload();
+            });
         </script>
-        
+
         <script>
             localStorage.setItem("teamCount", 9);
             const names = [
@@ -543,8 +536,7 @@
                 "DOM™",
                 "SherRudra™",
                 "Matrix Sajal™",
-                "Killer",
-                "Badsah™",
+                "Killer Badsah™",
                 "Tony™",
                 "Worker™"
             ];
@@ -635,8 +627,6 @@
                     }
                     names.push(val);
                 }
-
-                console.log(names);
 
                 if (!confirm("Save these team names?")) return;
 
@@ -1117,7 +1107,7 @@
                     document
                         .getElementById("pointsSection")
                         .classList.remove("hidden");
-                    renderPointsTable();
+                    //renderPointsTable();
                 }
             });
         </script>
@@ -1128,9 +1118,11 @@
                 const results = JSON.parse(
                     localStorage.getItem("matchResults") || "[]"
                 );
+
                 const teams = JSON.parse(
                     localStorage.getItem("teamNames") || "[]"
                 );
+
                 const stats = {};
 
                 teams.forEach(team => {
@@ -1138,8 +1130,21 @@
                 });
 
                 results.forEach(({ teamA, teamB, winner }) => {
+                    // If team is not in stats, initialize it
+                    [teamA, teamB].forEach(team => {
+                        if (!stats[team]) {
+                            stats[team] = {
+                                played: 0,
+                                won: 0,
+                                lost: 0,
+                                points: 0
+                            };
+                        }
+                    });
+
                     stats[teamA].played++;
                     stats[teamB].played++;
+
                     if (winner === teamA) {
                         stats[teamA].won++;
                         stats[teamB].lost++;
@@ -1159,9 +1164,12 @@
                     .sort((a, b) => b.points - a.points)
                     .forEach(row => {
                         let bgColor, textDecoration;
-                        if(row.name.includes("Zumanzoo™") || row.name.includes("Matrix Sajal™")){
-                          bgColor ="rgba(255, 0, 0, 0.05)"
-                          textDecoration = "line-through";
+                        if (
+                            row.name.includes("Zumanzoo™") ||
+                            row.name.includes("Matrix Sajal™")
+                        ) {
+                            bgColor = "rgba(255, 0, 0, 0.05)";
+                            textDecoration = "line-through";
                         }
                         const tr = document.createElement("tr");
                         tr.innerHTML = `
@@ -1550,13 +1558,16 @@
                         : "00-00-0000";
                     const matchStr = `${teamA} vs ${teamB}`;
                     const winner = result?.winner || "-";
-                    
+
                     let bgColor, textDecoration;
-                    if(matchStr.includes("Zumanzoo™") || matchStr.includes("Matrix Sajal™")){
-                      bgColor = "rgba(255, 0, 0, 0.05)";
-                      textDecoration = "line-through";
+                    if (
+                        matchStr.includes("Zumanzoo™") ||
+                        matchStr.includes("Matrix Sajal™")
+                    ) {
+                        bgColor = "rgba(255, 0, 0, 0.05)";
+                        textDecoration = "line-through";
                     }
-                    
+
                     const tr = document.createElement("tr");
                     tr.innerHTML = `
         <td>${formattedDate}</td>
@@ -1651,7 +1662,7 @@
                                 tdDate.style.backgroundColor = "#f2f2f2";
                                 tdDate.style.fontWeight = "bold";
 
-                                if (
+                                /*if (
                                     match.includes("Zumanzoo™") ||
                                     match.includes("Matrix Sajal™")
                                 ) {
@@ -1661,7 +1672,7 @@
                                         "rgba(255, 0, 0, 0.05)";
                                     tdDate.style.fontWeight = "normal";
                                     tdDate.textContent = "";
-                                }
+                                }*/
                                 tr.appendChild(tdDate);
                             }
 
