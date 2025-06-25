@@ -52,6 +52,23 @@
                 font-weight: bold;
                 /*transition: background-color 0.3s;*/
             }
+            
+            #btnReset{
+              width: 45px;
+              height: 45px;
+              position: fixed;
+              right: 20px;
+              bottom: 20px;
+              background-color: black;
+              margin: 0;
+              padding: 2px;
+              border-radius: 10px;
+              display: none;
+            }
+            #btnReset svg{
+              width: 25px;
+              fill: white;
+            }
 
             /*button:hover {
                 background-color: #0056b3;
@@ -488,6 +505,8 @@
             <h2>Reset League</h2>
             <button id="resetLeague">Reset Entire League</button>
         </div>
+        
+        <button type="submit" id="btnReset" onclick="funReset()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M0 224c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96l160 0 0 32c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-9.2-9.2-22.9-11.9-34.9-6.9S320 19.1 320 32l0 32L160 64C71.6 64 0 135.6 0 224zm512 64c0-17.7-14.3-32-32-32s-32 14.3-32 32c0 53-43 96-96 96l-160 0 0-32c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-32 160 0c88.4 0 160-71.6 160-160z"/></svg></button>
 
         <script>
             const correctPassword = "ADM!N-77GZ-LK90-QXP3-W&9MZ*Y1";
@@ -500,7 +519,7 @@
                 );
                 if (userInput) {
                     if (userInput === correctPassword) {
-                        alert("Access granted! ✓");
+                        alert("Access granted!");
                         localStorage.setItem("isAuthenticated", "true");
                     } else {
                         alert("Invalid token!");
@@ -524,7 +543,26 @@
             window.addEventListener("dblclick", function () {
                 //localStorage.clear();
                 //window.location.reload();
+                btnReset.style.display = "block";
             });
+            
+            const resetCode = "2457727013";
+            function funReset(){
+              const userInput = prompt(
+                    " Enter reset code to proceed:"
+                );
+                if (userInput) {
+                    if (userInput === resetCode) {
+                         localStorage.clear();
+                         window.location.reload();
+                    } else {
+                        alert("Operation failed!")
+                        btnReset.style.display = "none";
+                    }
+                }else{
+                  btnReset.style.display = "none";
+                }
+            }
         </script>
 
         <script>
