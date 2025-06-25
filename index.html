@@ -1,0 +1,1794 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MANG PREMIER LEAGUE</title>
+        <style type="text/css" media="all">
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: "Segoe UI", sans-serif;
+            }
+
+            body {
+                background-color: #f8f8f8;
+                padding: 20px;
+                color: #222;
+            }
+
+            h2 {
+                margin-bottom: 10px;
+                font-size: 1.4rem;
+            }
+
+            input[type="number"],
+            input[type="text"],
+            input[type="date"],
+            select {
+                padding: 10px;
+                margin: 10px 0;
+                width: 100%;
+                /*max-width: 500px;*/
+                border-radius: 10px;
+                border: 2px solid #ccc;
+                font-size: 16px;
+            }
+            input[type="number"] {
+                border-radius: 30px;
+                padding: 10px 15px;
+            }
+
+            button {
+                width: 100%;
+                padding: 14px 16px;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                border: none;
+                border-radius: 100px;
+                background-color: #000000;
+                color: white;
+                cursor: pointer;
+                font-weight: bold;
+                /*transition: background-color 0.3s;*/
+            }
+
+            /*button:hover {
+                background-color: #0056b3;
+            }*/
+
+            .section {
+                background: white;
+                padding: 15px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            }
+            .section h2 {
+                text-transform: uppercase;
+            }
+            .section span {
+                text-transform: uppercase;
+            }
+
+            .collapse-toggle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #eee;
+                padding: 14px 10px;
+                cursor: pointer;
+                border-radius: 10px;
+                margin-top: 20px;
+                user-select: none;
+                font-weight: bold;
+            }
+
+            .collapse-toggle:hover {
+                /*background-color: #ddd;*/
+            }
+
+            .collapse-content {
+                display: none;
+                padding: 10px 0;
+            }
+
+            .team-input {
+                margin-bottom: 10px;
+            }
+
+            .match-entry {
+                background-color: #f9f9f9;
+                border: 1px solid #ddd;
+                padding: 10px;
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+
+            .match-entry label {
+                display: block;
+                margin-top: 6px;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 10px;
+            }
+
+            th,
+            td {
+                border: 1px solid #ccc;
+                padding: 8px;
+                text-align: center;
+                font-size: 15px;
+            }
+
+            th {
+                background-color: #eee;
+                font-weight: 600;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .icon {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+
+            .label {
+                display: flex;
+                align-items: center;
+                margin-top: 8px;
+            }
+
+            .label input {
+                margin-right: 10px;
+            }
+
+            /* Container for each radio */
+            .custom-radio {
+                width: 100%;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                position: relative;
+                padding-left: 30px;
+                margin: px 0;
+                cursor: pointer;
+                font-size: 16px;
+                user-select: none;
+            }
+
+            /* Hide the default radio input */
+            .custom-radio input[type="radio"] {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                display:;
+            }
+
+            /* Create custom circle */
+            .custom-radio span {
+                /*position: absolute;
+  top: 1px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #ccc;
+  border-radius: 50%;
+  transition: background 0.3s ease;*/
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                background-color: transparent;
+                border: 2px solid;
+                box-sizing: border-box;
+                position: absolute;
+                left: 0px;
+                top: 50%;
+                transform: translate(0%, -50%);
+            }
+
+            /* Show blue border when checked */
+            .custom-radio input:checked ~ span {
+                /*background-color: #2196F3;*/
+                border-color:;
+            }
+            .custom-radio input:disabled ~ span {
+                border-color: #888;
+            }
+
+            /* Create inner circle when checked */
+            .custom-radio span::after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 100px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                display: none;
+            }
+
+            .custom-radio input:checked ~ span::after {
+                background-color: black;
+                display: block;
+            }
+
+            .custom-radio input:disabled ~ span::after {
+                background-color: #888;
+            }
+
+            .custom-radio p {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content:;
+                align-items: center;
+                background-color:;
+                font-size: 16px;
+                font-weight: 400;
+                background-color:;
+            }
+            .custom-radio input:disabled ~ p {
+                color: #888;
+            }
+
+            /* 📱 Mobile Responsive */
+            @media (max-width: 600px) {
+                body {
+                    padding: 10px;
+                }
+
+                input,
+                button {
+                    font-size: 14px;
+                }
+
+                .collapse-toggle {
+                    font-size: 14px;
+                }
+
+                table th,
+                table td {
+                    font-size: 13px;
+                    padding: 6px;
+                }
+
+                h2 {
+                    font-size: 1.2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 1. Number of Teams Input -->
+        <div class="section">
+            <h2>Enter Number of Teams</h2>
+            <input
+                type="number"
+                id="teamCount"
+                placeholder="Enter number of teams"
+                min="2"
+                disabled
+            />
+            <button id="submitTeamCount">Continue</button>
+        </div>
+
+        <!-- 2. Team Name Input Section -->
+        <div class="section hidden" id="teamNamesSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('teamNamesCollapse')"
+            >
+                <span>Enter Team Names</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="teamNamesCollapse">
+                <div id="teamInputs"></div>
+                <button id="saveTeamNames">Save Team Names</button>
+            </div>
+        </div>
+
+        <!-- 3. Round Robin Schedule Generator -->
+        <div class="section hidden" id="roundRobinSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('matchScheduleCollapse')"
+            >
+                <span>Generate Round Robin Matches</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="matchScheduleCollapse">
+                <button id="generateSchedule">Generate Matches</button>
+                <div id="matchScheduleContainer"></div>
+                <button id="saveScheduleDates">Save Schedule with Dates</button>
+            </div>
+        </div>
+
+        <!-- 4. Match Listing Section -->
+        <div class="section hidden" id="matchListSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('matchListByDate')"
+            >
+                <span>Match List by Date</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="matchListByDate">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Match</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matchListByDateTable"></tbody>
+                </table>
+            </div>
+
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('matchListByTeam')"
+            >
+                <span>Match List by Team</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="matchListByTeam">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Match</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="matchListByTeamTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 6. Match Result Entry -->
+        <div class="section hidden" id="resultEntrySection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('resultEntryCollapse')"
+            >
+                <span>Enter Match Results</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="resultEntryCollapse">
+                <div id="resultEntryContainer"></div>
+                <button id="saveMatchResults">Save Match Results</button>
+            </div>
+        </div>
+
+        <!-- 7. Points Table -->
+        <div class="section hidden" id="pointsSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('pointsCollapse')"
+            >
+                <span>Points Table</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="pointsCollapse">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Played</th>
+                            <th>Won</th>
+                            <th>Lost</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pointsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 8. Knockout Round -->
+        <div class="section hidden" id="knockoutSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('knockoutCollapse')"
+            >
+                <span>Knockout: Semi-Finals</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="knockoutCollapse">
+                <div id="knockoutMatches"></div>
+                <button id="submitKnockout">Submit Semi-Final Winners</button>
+            </div>
+        </div>
+
+        <!-- 9. Final Match -->
+        <div class="section hidden" id="finalSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('finalCollapse')"
+            >
+                <span>Final Match</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="finalCollapse">
+                <div id="finalMatch"></div>
+                <button id="submitFinal">Submit Final Winner</button>
+            </div>
+        </div>
+
+        <!-- 10. Champion Display -->
+        <div class="section hidden" id="championSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('championCollapse')"
+            >
+                <span>Mangpion</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="championCollapse">
+                <div id="championResult"></div>
+            </div>
+        </div>
+
+        <!-- 11. Full League Match Stats (Short Format) -->
+        <div class="section hidden" id="leagueStatsShortSection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('leagueStatsShortCollapse')"
+            >
+                <span>Full League Summary</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="leagueStatsShortCollapse">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Match</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leagueStatsShortTable"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 11. Full League Summary -->
+        <!--<div class="section hidden" id="summarySection">
+            <div
+                class="collapse-toggle"
+                onclick="toggleCollapse('summaryCollapse')"
+            >
+                <span>11. Full League Summary</span>
+                <span class="icon">+</span>
+            </div>
+            <div class="collapse-content" id="summaryCollapse">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Team A</th>
+                            <th>Team B</th>
+                            <th>Winner</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody"></tbody>
+                </table>
+            </div>
+        </div>-->
+
+        <!-- 12. Reset Button -->
+        <div class="section">
+            <h2>Reset League</h2>
+            <button id="resetLeague">Reset Entire League</button>
+        </div>
+        
+
+
+        <script>
+            const correctPassword = "ADM!N-77GZ-LK90-QXP3-W&9MZ*Y1";
+            const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+            if (!isAuthenticated) {
+                const userInput = prompt(
+                    " Enter temporary access key to proceed:"
+                );
+                if(userInput){
+                  if(userInput === correctPassword){
+                    alert("Access granted! ✓")
+                    localStorage.setItem("isAuthenticated", "true");
+                  }else{
+                    alert("Invalid token!")
+                    document.body.innerHTML = "<h4>Access denied! 🖕🖕</h4>";
+                  }
+                }else{
+                  document.body.innerHTML = '<h4>Access denied! <a href="">try again.</a></h4>';
+                }
+
+                /*if (userInput === correctPassword) {
+                    localStorage.setItem("isAuthenticated", "true");
+                    alert("Access granted.");
+                } else {
+                    alert("Incorrect password! Access denied.");
+                    //window.location.reload()
+                }*/
+            }
+        </script>
+        
+        <script>
+            const isReset = localStorage.getItem("isReset");
+            if (isReset !== "true") {
+              localStorage.setItem("isReset", "false");
+            }else{
+              document.body.innerHTML="Session expired!";
+            }
+            window.addEventListener("dblclick",  function(){
+              //localStorage.clear();
+              //window.location.reload();
+            })
+        </script>
+        
+        <script>
+            localStorage.setItem("teamCount", 9);
+            const names = [
+                "Zumanzoo™",
+                "TG Nayak™",
+                "BlackShadow™",
+                "DOM™",
+                "SherRudra™",
+                "Matrix Sajal™",
+                "Killer",
+                "Badsah™",
+                "Tony™",
+                "Worker™"
+            ];
+            localStorage.setItem("teamNames", JSON.stringify(names));
+            // ✅ Team Count Save and Show Name Inputs
+            function saveTeamCount() {
+                const count = parseInt(
+                    document.getElementById("teamCount").value
+                );
+                if (isNaN(count) || count < 2) {
+                    alert("Please enter at least 2 teams");
+                    return;
+                }
+
+                if (!confirm(`Are you sure you want to create ${count} teams?`))
+                    return;
+
+                localStorage.setItem("teamCount", count);
+                loadTeamInputs(count);
+                document
+                    .getElementById("teamNamesSection")
+                    .classList.remove("hidden");
+            }
+
+            // 🧾 Team Name Fields Generator
+            function loadTeamInputs(count) {
+                const container = document.getElementById("teamInputs");
+                container.innerHTML = "";
+
+                const savedNames = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+
+                const teamIndex = [
+                    "First",
+                    "Second",
+                    "Thirth",
+                    "Fourth",
+                    "Fifth",
+                    "Sixth",
+                    "Seventh"
+                ];
+
+                for (let i = 0; i < count; i++) {
+                    const input = document.createElement("input");
+                    input.type = "text";
+                    input.placeholder = `${teamIndex[i]} Team Name`;
+                    input.className = "team-input";
+                    input.id = `teamName${i}`;
+                    input.value = savedNames[i] || "";
+                    if (savedNames[i]) {
+                        input.setAttribute("disabled", "disabled");
+                    }
+                    container.appendChild(input);
+                }
+            }
+
+            // ♻️ Refresh pe restore
+            window.addEventListener("DOMContentLoaded", () => {
+                const savedCount = localStorage.getItem("teamCount");
+                if (savedCount) {
+                    document.getElementById("teamCount").value = savedCount;
+                    loadTeamInputs(parseInt(savedCount));
+                    document
+                        .getElementById("teamNamesSection")
+                        .classList.remove("hidden");
+                }
+            });
+
+            // 🧷 Submit Button Listener
+            document
+                .getElementById("submitTeamCount")
+                .addEventListener("click", saveTeamCount);
+        </script>
+
+        <script>
+            // 💾 Team Names Save Function
+            function saveTeamNames() {
+                const count = parseInt(localStorage.getItem("teamCount"));
+                const names = [];
+
+                for (let i = 0; i < count; i++) {
+                    const input = document.getElementById(`teamName${i}`);
+                    const val = input.value.trim();
+                    if (!val) {
+                        alert(`Team ${i + 1} name is empty`);
+                        return;
+                    }
+                    names.push(val);
+                }
+
+                console.log(names);
+
+                if (!confirm("Save these team names?")) return;
+
+                localStorage.setItem("teamNames", JSON.stringify(names));
+
+                // Show next sections
+                document
+                    .getElementById("roundRobinSection")
+                    .classList.remove("hidden");
+                //document.getElementById("matchListSection").classList.remove("hidden");
+                //document.getElementById("resultEntrySection").classList.remove("hidden");
+                //document.getElementById("pointsSection").classList.remove("hidden");
+            }
+
+            // ➕ Collapse Toggle Function
+            function toggleCollapse(id) {
+                const section = document.getElementById(id);
+                const icon =
+                    section.previousElementSibling.querySelector(".icon");
+                if (section.style.display === "block") {
+                    section.style.display = "none";
+                    icon.textContent = "+";
+                } else {
+                    section.style.display = "block";
+                    icon.textContent = "-";
+                }
+            }
+
+            // 📌 Button Listener
+            document
+                .getElementById("saveTeamNames")
+                .addEventListener("click", saveTeamNames);
+
+            // my code
+            window.addEventListener("DOMContentLoaded", () => {
+                const savedNames = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+                if (savedNames.length > 0) {
+                    document
+                        .getElementById("roundRobinSection")
+                        ?.classList.remove("hidden");
+                    //document.getElementById("matchListSection")?.classList.remove("hidden");
+                    // document.getElementById("resultEntrySection")?.classList.remove("hidden");
+                    // document.getElementById("pointsSection")?.classList.remove("hidden");
+                }
+            });
+        </script>
+
+        <script>
+            // 🎲 Generate Round Robin Schedule
+            function generateSchedule() {
+                if (!confirm(`Are you sure you want to generate matches?`))
+                    return;
+
+                /*const names = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+                const schedule = [];
+
+                for (let i = 0; i < names.length; i++) {
+                    for (let j = i + 1; j < names.length; j++) {
+                        schedule.push({
+                            teamA: names[i],
+                            teamB: names[j],
+                            date: ""
+                        });
+                    }
+                }
+
+                // Shuffle matches
+                for (let i = schedule.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [schedule[i], schedule[j]] = [schedule[j], schedule[i]];
+                }*/
+
+                const schedule = [
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "BlackShadow™",
+                        date: "2025-06-20"
+                    },
+                    {
+                        teamA: "SherRudra™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-06-21"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "SherRudra™",
+                        date: "2025-06-22"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "Worker™",
+                        date: "2025-06-23"
+                    },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "BlackShadow™",
+                        date: "2025-06-24"
+                    },
+                    {
+                        teamA: "DOM™",
+                        teamB: "SherRudra™",
+                        date: "2025-06-25"
+                    },
+                    {
+                        teamA: "Matrix Sajal™",
+                        teamB: "Tony™",
+                        date: "2025-06-26"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "TG Nayak™",
+                        date: "2025-06-27"
+                    },
+                    {
+                        teamA: "DOM™",
+                        teamB: "Matrix Sajal™",
+                        date: "2025-06-28"
+                    },
+                    {
+                        teamA: "SherRudra™",
+                        teamB: "Matrix Sajal™",
+                        date: "2025-06-29"
+                    },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "Matrix Sajal™",
+                        date: "2025-06-30"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "Worker™",
+                        date: "2025-07-01"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-07-02"
+                    },
+                    {
+                        teamA: "Matrix Sajal™",
+                        teamB: "Worker™",
+                        date: "2025-07-03"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "Tony™",
+                        date: "2025-07-04"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "Tony™",
+                        date: "2025-07-05"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-07-06"
+                    },
+                    {
+                        teamA: "SherRudra™",
+                        teamB: "Tony™",
+                        date: "2025-07-07"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "SherRudra™",
+                        date: "2025-07-08"
+                    },
+                    { teamA: "Tony™", teamB: "Worker™", date: "2025-07-09" },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "Tony™",
+                        date: "2025-07-10"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "DOM™",
+                        date: "2025-07-11"
+                    },
+                    { teamA: "Zumanzoo™", teamB: "DOM™", date: "2025-07-12" },
+                    {
+                        teamA: "SherRudra™",
+                        teamB: "Worker™",
+                        date: "2025-07-13"
+                    },
+                    {
+                        teamA: "DOM™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-07-14"
+                    },
+                    { teamA: "TG Nayak™", teamB: "DOM™", date: "2025-07-15" },
+                    { teamA: "DOM™", teamB: "Worker™", date: "2025-07-16" },
+                    { teamA: "DOM™", teamB: "Tony™", date: "2025-07-17" },
+                    {
+                        teamA: "Matrix Sajal™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-07-18"
+                    },
+                    {
+                        teamA: "Killer Badsah™",
+                        teamB: "Tony™",
+                        date: "2025-07-19"
+                    },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "Killer Badsah™",
+                        date: "2025-07-20"
+                    },
+                    {
+                        teamA: "Killer Badsah™",
+                        teamB: "Worker™",
+                        date: "2025-07-21"
+                    },
+                    {
+                        teamA: "Zumanzoo™",
+                        teamB: "Matrix Sajal™",
+                        date: "2025-07-22"
+                    },
+                    {
+                        teamA: "BlackShadow™",
+                        teamB: "Matrix Sajal™",
+                        date: "2025-07-23"
+                    },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "Worker™",
+                        date: "2025-07-24"
+                    },
+                    {
+                        teamA: "TG Nayak™",
+                        teamB: "SherRudra™",
+                        date: "2025-07-25"
+                    }
+                ];
+
+                localStorage.setItem("matchSchedule", JSON.stringify(schedule));
+                renderSchedule(schedule);
+            }
+
+            // 📅 Render Match Schedule With Date Input
+            function renderSchedule(schedule) {
+                const container = document.getElementById(
+                    "matchScheduleContainer"
+                );
+                container.innerHTML = "";
+
+                schedule.forEach((match, idx) => {
+                    const div = document.createElement("div");
+                    div.className = "match-entry";
+                    div.innerHTML = `
+        <strong>Match ${idx + 1}:</strong> ${match.teamA} vs ${match.teamB}<br/>
+        <label>Date: <input type="date" id="matchDate${idx}" value="${
+            match.date || ""
+        }"/></label>
+      `;
+                    container.appendChild(div);
+                });
+            }
+
+            // 💾 Save Dates for Matches
+            function saveScheduleDates() {
+                const schedule = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+
+                schedule.forEach((match, idx) => {
+                    const input = document.getElementById(`matchDate${idx}`);
+                    match.date = input.value;
+                });
+
+                if (
+                    !confirm("Are you sure you want to save these match dates?")
+                )
+                    return;
+
+                localStorage.setItem("matchSchedule", JSON.stringify(schedule));
+
+                document
+                    .getElementById("matchListSection")
+                    .classList.remove("hidden");
+                document
+                    .getElementById("resultEntrySection")
+                    .classList.remove("hidden");
+                //document.getElementById("pointsSection").classList.remove("hidden");
+
+                // my code
+                renderMatchListByDate();
+                renderMatchListByTeam();
+                renderResultEntry(); // optional: refresh result entry dates
+
+                alert("Schedule saved successfully!");
+            }
+
+            // ♻️ Restore Schedule on Page Load
+            window.addEventListener("DOMContentLoaded", () => {
+                const savedSchedule = localStorage.getItem("matchSchedule");
+                if (savedSchedule) {
+                    renderSchedule(JSON.parse(savedSchedule));
+
+                    document
+                        .getElementById("roundRobinSection")
+                        .classList.remove("hidden");
+
+                    //my test
+                    // document.getElementById("matchListSection").classList.remove("hidden");
+                    //    document.getElementById("resultEntrySection").classList.remove("hidden");
+                    //   document.getElementById("pointsSection").classList.remove("hidden");
+                }
+            });
+
+            // 🔘 Button Events
+            document
+                .getElementById("generateSchedule")
+                .addEventListener("click", generateSchedule);
+            document
+                .getElementById("saveScheduleDates")
+                .addEventListener("click", saveScheduleDates);
+        </script>
+
+        <script>
+            // 📅 Match List by Date
+            function renderMatchListByDate() {
+                const matches = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const container = document.getElementById("matchListByDate");
+                const grouped = {};
+
+                matches.forEach(({ teamA, teamB, date }) => {
+                    if (!grouped[date]) grouped[date] = [];
+                    grouped[date].push(`${teamA} vs ${teamB}`);
+                });
+
+                container.innerHTML = "";
+                Object.keys(grouped)
+                    .sort()
+                    .forEach(date => {
+                        const div = document.createElement("div");
+                        div.innerHTML =
+                            `<strong>${date}</strong><ul>` +
+                            grouped[date].map(m => `<li>${m}</li>`).join("") +
+                            `</ul>`;
+                        container.appendChild(div);
+                    });
+            }
+
+            // 👥 Match List by Team
+            function renderMatchListByTeam() {
+                const teams = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+                const matches = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const container = document.getElementById("matchListByTeam");
+                container.innerHTML = "";
+
+                teams.forEach(team => {
+                    const teamMatches = matches.filter(
+                        ({ teamA, teamB }) => teamA === team || teamB === team
+                    );
+                    const div = document.createElement("div");
+                    div.innerHTML =
+                        `<strong>${team}</strong><ul>` +
+                        teamMatches
+                            .map(
+                                ({ teamA, teamB, date }) =>
+                                    `<li>${teamA} vs ${teamB} (${
+                                        date || "No date"
+                                    })</li>`
+                            )
+                            .join("") +
+                        `</ul>`;
+                    container.appendChild(div);
+                });
+            }
+
+            // 📝 Result Entry Radio Button UI
+            function renderResultEntry() {
+                const matches = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const results = JSON.parse(
+                    localStorage.getItem("matchResults") || "[]"
+                );
+                const container = document.getElementById(
+                    "resultEntryContainer"
+                );
+                container.innerHTML = "";
+
+                matches.forEach(({ teamA, teamB, date }, idx) => {
+                    const matchId = `${teamA}_${teamB}_${date}`;
+                    const existing = results.find(r => r.matchId === matchId);
+
+                    if (date) {
+                        date = formatDate(date);
+                    }
+
+                    const div = document.createElement("div");
+                    div.className = "match-entry";
+                    div.innerHTML = `
+      <p style="margin-bottom:7px;font-weight:450">${teamA} vs ${teamB}</p>
+      <small style="display:block;margin-bottom:15px;font-weight:450">${
+          date || "00-00-0000"
+      }</small>
+      <label class="custom-radio">
+        <input type="radio" name="${matchId}" value="${teamA}" 
+          ${existing?.winner === teamA ? "checked" : ""}
+          ${existing ? "disabled" : ""}
+        /><p>${teamA}</p><span></span>
+      </label><br/>
+      <label class="custom-radio">
+        <input type="radio" name="${matchId}" value="${teamB}" 
+          ${existing?.winner === teamB ? "checked" : ""}
+          ${existing ? "disabled" : ""}
+        /><p>${teamB}</p> <span></span>
+      </label>
+    `;
+                    container.appendChild(div);
+                });
+            }
+
+            // 💾 Save Match Results
+            function saveMatchResults() {
+                const inputs = document.querySelectorAll(
+                    "input[type=radio]:checked"
+                );
+                const results = [];
+
+                inputs.forEach(input => {
+                    results.push({
+                        matchId: input.name,
+                        winner: input.value,
+                        teamA: input.name.split("_")[0],
+                        teamB: input.name.split("_")[1],
+                        date: input.name.split("_")[2]
+                    });
+                });
+
+                if (!confirm("Save selected match winners?")) return;
+
+                localStorage.setItem("matchResults", JSON.stringify(results));
+                alert("Results saved!");
+
+                document
+                    .getElementById("pointsSection")
+                    .classList.remove("hidden");
+                renderPointsTable();
+                renderLeagueStatsShort();
+                //my code
+                //document.getElementById("summarySection")?.classList.remove("hidden");
+                //    document.getElementById("leagueStatsSection")?.classList.remove("hidden");
+                //  document.getElementById("fullStatsSection")?.classList.remove("hidden");
+            }
+
+            // 🔘 Button bind
+            document
+                .getElementById("saveMatchResults")
+                .addEventListener("click", saveMatchResults);
+
+            // ♻️ Restore on load
+            window.addEventListener("DOMContentLoaded", () => {
+                if (localStorage.getItem("matchSchedule")) {
+                    renderMatchListByDate();
+                    renderMatchListByTeam();
+                    renderResultEntry();
+
+                    document
+                        .getElementById("matchListSection")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("resultEntrySection")
+                        .classList.remove("hidden");
+                    document
+                        .getElementById("pointsSection")
+                        .classList.remove("hidden");
+                    renderPointsTable();
+                }
+            });
+        </script>
+
+        <script>
+            // 📊 Points Table Generator
+            function renderPointsTable() {
+                const results = JSON.parse(
+                    localStorage.getItem("matchResults") || "[]"
+                );
+                const teams = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+                const stats = {};
+
+                teams.forEach(team => {
+                    stats[team] = { played: 0, won: 0, lost: 0, points: 0 };
+                });
+
+                results.forEach(({ teamA, teamB, winner }) => {
+                    stats[teamA].played++;
+                    stats[teamB].played++;
+                    if (winner === teamA) {
+                        stats[teamA].won++;
+                        stats[teamB].lost++;
+                        stats[teamA].points += 2;
+                    } else {
+                        stats[teamB].won++;
+                        stats[teamA].lost++;
+                        stats[teamB].points += 2;
+                    }
+                });
+
+                const tbody = document.getElementById("pointsTableBody");
+                tbody.innerHTML = "";
+
+                teams
+                    .map(t => ({ name: t, ...stats[t] }))
+                    .sort((a, b) => b.points - a.points)
+                    .forEach(row => {
+                        let bgColor, textDecoration;
+                        if(row.name.includes("Zumanzoo™") || row.name.includes("Matrix Sajal™")){
+                          bgColor ="rgba(255, 0, 0, 0.05)"
+                          textDecoration = "line-through";
+                        }
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+          <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${row.name}</td>
+          <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${row.played}</td>
+          <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${row.won}</td>
+          <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${row.lost}</td>
+          <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${row.points}</td>
+        `;
+                        tbody.appendChild(tr);
+                    });
+
+                localStorage.setItem("pointsTable", JSON.stringify(stats));
+                setupKnockout(stats);
+            }
+
+            // 🏆 Setup Knockout (Top 4 → Semi-Final)
+            function setupKnockout(stats) {
+                const sorted = Object.entries(stats)
+                    .map(([team, data]) => ({ team, ...data }))
+                    .sort((a, b) => b.points - a.points)
+                    .slice(0, 4);
+
+                if (sorted.length < 4) return;
+
+                const semiMatches = [
+                    {
+                        teamA: sorted[0].team,
+                        teamB: sorted[3].team,
+                        id: "semi1"
+                    },
+                    {
+                        teamA: sorted[1].team,
+                        teamB: sorted[2].team,
+                        id: "semi2"
+                    }
+                ];
+
+                localStorage.setItem(
+                    "semiMatches",
+                    JSON.stringify(semiMatches)
+                );
+                //  renderSemiFinals();
+
+                // ✅ Check if group stage matches are fully completed
+                const schedule = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const results = JSON.parse(
+                    localStorage.getItem("matchResults") || "[]"
+                );
+
+                if (results.length === schedule.length && results.length > 0) {
+                    // document.getElementById("knockoutSection")?.classList.remove("hidden");
+                    renderSemiFinals(); // 🧠 also render when valid
+                }
+            }
+
+            // 🥊 Render Semi Final Matches
+            function renderSemiFinals() {
+                const semi = JSON.parse(
+                    localStorage.getItem("semiMatches") || "[]"
+                );
+                const finalMatch = JSON.parse(
+                    localStorage.getItem("finalMatch") || "{}"
+                );
+                const finalistA = finalMatch.teamA;
+                const finalistB = finalMatch.teamB;
+
+                const container = document.getElementById("knockoutMatches");
+                container.innerHTML = "";
+
+                semi.forEach(({ teamA, teamB, id }) => {
+                    // ✅ Check if either semi team is in final
+                    let winner = null;
+                    if (teamA === finalistA || teamA === finalistB)
+                        winner = teamA;
+                    else if (teamB === finalistA || teamB === finalistB)
+                        winner = teamB;
+
+                    const div = document.createElement("div");
+                    div.className = "match-entry";
+
+                    div.innerHTML = `
+      <p style="font-weight:450">${teamA} vs ${teamB}</p><br/>
+      <label class="custom-radio">
+        <input type="radio" name="${id}" value="${teamA}"
+          ${winner === teamA ? "checked" : ""}
+          ${winner ? "disabled" : ""}>
+          <p>${teamA}</p><span></span>
+      </label><br/>
+      <label class="custom-radio">
+        <input type="radio" name="${id}" value="${teamB}"
+          ${winner === teamB ? "checked" : ""}
+          ${winner ? "disabled" : ""}>
+          <p>${teamB}</p><span></span>
+      </label>
+    `;
+
+                    container.appendChild(div);
+                });
+
+                document
+                    .getElementById("knockoutSection")
+                    .classList.remove("hidden");
+            }
+
+            // 🧮 Final Match Setup
+            document
+                .getElementById("submitKnockout")
+                .addEventListener("click", () => {
+                    if (
+                        !confirm(
+                            `Are you sure you want to submit semi-final winners?`
+                        )
+                    )
+                        return;
+
+                    const inputs = document.querySelectorAll(
+                        "#knockoutMatches input[type=radio]:checked"
+                    );
+                    if (inputs.length < 2)
+                        return alert(
+                            "Please select at least one semi-final winners"
+                        );
+
+                    const winners = [...inputs].map(i => i.value);
+                    const finalMatch = {
+                        teamA: winners[0],
+                        teamB: winners[1]
+                    };
+
+                    localStorage.setItem(
+                        "finalMatch",
+                        JSON.stringify(finalMatch)
+                    );
+                    renderFinal();
+                });
+
+            // 🏁 Render Final Match
+            /*function renderFinal() {
+                const { teamA, teamB } = JSON.parse(
+                    localStorage.getItem("finalMatch") || "{}"
+                );
+                if (!teamA || !teamB) return;
+
+                const container = document.getElementById("finalMatch");
+                container.innerHTML = `
+      <div class="match-entry">
+        <strong>${teamA} vs ${teamB}</strong><br/>
+        <label><input type="radio" name="final" value="${teamA}"> ${teamA} wins</label><br/>
+        <label><input type="radio" name="final" value="${teamB}"> ${teamB} wins</label>
+      </div>
+    `;
+
+                document
+                    .getElementById("finalSection")
+                    .classList.remove("hidden");
+            }*/ function renderFinal() {
+                const { teamA, teamB } = JSON.parse(
+                    localStorage.getItem("finalMatch") || "{}"
+                );
+                if (!teamA || !teamB) return;
+
+                const savedChampion = localStorage.getItem("champion");
+
+                const container = document.getElementById("finalMatch");
+
+                container.innerHTML = `
+    <div class="match-entry">
+      <p style="font-weight:450">${teamA} vs ${teamB}</p><br/>
+      <label class="custom-radio">
+        <input type="radio" name="final" value="${teamA}"
+          ${savedChampion === teamA ? "checked" : ""}
+          ${savedChampion ? "disabled" : ""}>
+          <p>${teamA}</p><span></span>
+      </label><br/>
+      <label class="custom-radio">
+        <input type="radio" name="final" value="${teamB}"
+          ${savedChampion === teamB ? "checked" : ""}
+          ${savedChampion ? "disabled" : ""}>
+          <p>${teamB}</p><span></span>
+      </label>
+    </div>
+  `;
+
+                document
+                    .getElementById("finalSection")
+                    .classList.remove("hidden");
+            }
+
+            // 👑 Submit Final Winner
+            document
+                .getElementById("submitFinal")
+                .addEventListener("click", () => {
+                    if (
+                        !confirm(
+                            `Confirm final winner? Once submitted, it cannot be changed!`
+                        )
+                    )
+                        return;
+
+                    const selected = document.querySelector(
+                        "input[name=final]:checked"
+                    );
+                    if (!selected) return alert("Please select final winner");
+
+                    const champion = selected.value;
+                    localStorage.setItem("champion", champion);
+
+                    const today = new Date();
+                    const day = String(today.getDate()).padStart(2, "0");
+                    const month = String(today.getMonth() + 1).padStart(2, "0"); // Month is 0-based
+                    const year = today.getFullYear();
+
+                    const finalMatchDate = `${day}-${month}-${year}`;
+
+                    localStorage.setItem("finalMatchDate", finalMatchDate);
+                    renderChampion();
+                });
+
+            // 🏆 Show Champion
+            function renderChampion() {
+                const champion = localStorage.getItem("champion");
+                const finalMatch = JSON.parse(
+                    localStorage.getItem("finalMatch") || "{}"
+                );
+                const results = JSON.parse(
+                    localStorage.getItem("matchResults") || "[]"
+                );
+
+                const container = document.getElementById("championResult");
+
+                // 🏆 Header
+                let html = `
+    <h3>MANG PREMIAR LEAGUE (2025)</h3>
+    <h4>SEASON : 1</h4>
+    <h4>MANGPION TEAM : ${champion}</h4>
+  `;
+
+                // 🟩 Table 1: Final Match
+                html += `
+    <h4 style="padding-top:20px">FINAL MATCH DETAILS</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Match</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: rgba(0, 255, 0, 0.05)">
+          <td>${localStorage.getItem("finalMatchDate")}</td>
+          <td>${finalMatch.teamA} vs ${finalMatch.teamB}</td>
+          <td>${champion}</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+
+                // 🟥 Table 2: Champion Team All Matches
+                const championMatches = results.filter(
+                    r => r.teamA === champion || r.teamB === champion
+                );
+
+                let matchHistoryRows = "";
+                championMatches.forEach(match => {
+                    const isWinner = match.winner === champion;
+                    const bgColor = isWinner
+                        ? "rgba(0,255,0,0.05)"
+                        : "rgba(255,0,0,0.05)";
+                    matchHistoryRows += `
+      <tr style="background-color:${bgColor}">
+        <td>${formatDate(match.date)}</td>
+        <td>${match.teamA} vs ${match.teamB}</td>
+        <td>${match.winner}</td>
+      </tr>
+    `;
+                });
+
+                html += `
+    <h4 style="padding-top:20px">ALL MATCHES PLAYED BY : ${champion}</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Match</th>
+          <th>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${matchHistoryRows}
+      </tbody>
+    </table>
+  `;
+
+                container.innerHTML = html;
+
+                document
+                    .getElementById("championSection")
+                    ?.classList.remove("hidden");
+            }
+
+            // 🔁 Reset League
+            document
+                .getElementById("resetLeague")
+                .addEventListener("click", () => {
+                    if (
+                        confirm(
+                            "Are you sure to reset the league? All data will be lost."
+                        )
+                    ) {
+                        localStorage.clear();
+                        localStorage.setItem("isReset", "true");
+                        location.reload();
+                    }
+                });
+
+            // ♻️ Restore on load
+            window.addEventListener("DOMContentLoaded", () => {
+                if (localStorage.getItem("matchResults")) {
+                    renderPointsTable();
+                    //renderChampion();
+                }
+
+                if (localStorage.getItem("finalMatch")) {
+                    renderFinal();
+                    document
+                        .getElementById("finalSection")
+                        .classList.remove("hidden");
+                }
+
+                if (localStorage.getItem("semiMatches")) {
+                    // renderSemiFinals();
+
+                    // ✅ Check if group stage matches are fully completed
+                    const schedule = JSON.parse(
+                        localStorage.getItem("matchSchedule") || "[]"
+                    );
+                    const results = JSON.parse(
+                        localStorage.getItem("matchResults") || "[]"
+                    );
+
+                    if (
+                        results.length === schedule.length &&
+                        results.length > 0
+                    ) {
+                        // document.getElementById("knockoutSection")?.classList.remove("hidden");
+                        renderSemiFinals(); // 🧠 also render when valid
+                    }
+                }
+
+                // my code
+                const champion = localStorage.getItem("champion");
+                if (champion) {
+                    document
+                        .getElementById("championSection")
+                        ?.classList.remove("hidden");
+                    renderChampion();
+                }
+            });
+        </script>
+
+        <script>
+            function renderLeagueStatsShort() {
+                const schedule = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const results = JSON.parse(
+                    localStorage.getItem("matchResults") || "[]"
+                );
+                const tbody = document.getElementById("leagueStatsShortTable");
+                tbody.innerHTML = "";
+
+                schedule.forEach(({ teamA, teamB, date }) => {
+                    const result = results.find(
+                        r =>
+                            r.teamA === teamA &&
+                            r.teamB === teamB &&
+                            r.date === date
+                    );
+
+                    const formattedDate = date
+                        ? formatDate(date)
+                        : "00-00-0000";
+                    const matchStr = `${teamA} vs ${teamB}`;
+                    const winner = result?.winner || "-";
+                    
+                    let bgColor, textDecoration;
+                    if(matchStr.includes("Zumanzoo™") || matchStr.includes("Matrix Sajal™")){
+                      bgColor = "rgba(255, 0, 0, 0.05)";
+                      textDecoration = "line-through";
+                    }
+                    
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+        <td>${formattedDate}</td>
+        <td style="background-color:${bgColor}; text-decoration:${textDecoration}">${matchStr}</td>
+        <td>${winner}</td>
+      `;
+                    tbody.appendChild(tr);
+                });
+
+                document
+                    .getElementById("leagueStatsShortSection")
+                    .classList.remove("hidden");
+            }
+
+            // Format YYYY-MM-DD → DD-MM-YYYY
+            function formatDate(iso) {
+                const parts = iso.split("-");
+                return `${parts[2]}-${parts[1]}-${parts[0]}`;
+            }
+
+            // Call after result save
+            /*function saveMatchResults() {
+                const inputs = document.querySelectorAll(
+                    "input[type=radio]:checked"
+                );
+                const results = [];
+
+                inputs.forEach(input => {
+                    results.push({
+                        matchId: input.name,
+                        winner: input.value,
+                        teamA: input.name.split("_")[0],
+                        teamB: input.name.split("_")[1],
+                        date: input.name.split("_")[2]
+                    });
+                });
+
+                if (!confirm("Save selected match winners?")) return;
+
+                localStorage.setItem("matchResults", JSON.stringify(results));
+                alert("Results saved!");
+                
+
+                renderPointsTable();
+                renderSummaryTable?.();
+                renderFullTeamStats?.();
+                renderLeagueStatsTable?.();
+                renderLeagueStatsShort(); // ✅ short table
+            }*/
+
+            // On load
+            window.addEventListener("DOMContentLoaded", () => {
+                if (
+                    localStorage.getItem("matchSchedule") &&
+                    localStorage.getItem("matchResults")
+                ) {
+                    renderLeagueStatsShort();
+                }
+            });
+        </script>
+
+        <script>
+            function renderMatchListByDate() {
+                const matches = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const tbody = document.getElementById("matchListByDateTable");
+                tbody.innerHTML = "";
+
+                // Group matches by date
+                const grouped = {};
+                matches.forEach(({ teamA, teamB, date }) => {
+                    if (!grouped[date]) grouped[date] = [];
+                    grouped[date].push(`${teamA} vs ${teamB}`);
+                });
+
+                // Render rows with rowspan
+                Object.keys(grouped)
+                    .sort()
+                    .forEach(date => {
+                        const matchList = grouped[date];
+
+                        matchList.forEach((match, index) => {
+                            const tr = document.createElement("tr");
+
+                            if (index === 0) {
+                                const tdDate = document.createElement("td");
+                                tdDate.textContent = formatDate(date);
+                                tdDate.rowSpan = matchList.length;
+                                tdDate.style.verticalAlign = "middle";
+                                tdDate.style.textAlign = "center";
+                                tdDate.style.backgroundColor = "#f2f2f2";
+                                tdDate.style.fontWeight = "bold";
+
+                                if (
+                                    match.includes("Zumanzoo™") ||
+                                    match.includes("Matrix Sajal™")
+                                ) {
+                                    tdDate.style.textDecoration =
+                                        "line-through";
+                                    tdDate.style.backgroundColor =
+                                        "rgba(255, 0, 0, 0.05)";
+                                    tdDate.style.fontWeight = "normal";
+                                    tdDate.textContent = "";
+                                }
+                                tr.appendChild(tdDate);
+                            }
+
+                            const tdMatch = document.createElement("td");
+                            tdMatch.textContent = match;
+
+                            if (
+                                match.includes("Zumanzoo™") ||
+                                match.includes("Matrix Sajal™")
+                            ) {
+                                tdMatch.style.textDecoration = "line-through";
+                                tdMatch.style.backgroundColor =
+                                    "rgba(255, 0, 0, 0.05)";
+                                tdMatch.style.opacity = "80%";
+                            }
+                            tr.appendChild(tdMatch);
+
+                            tbody.appendChild(tr);
+                        });
+                    });
+            }
+
+            function formatDate(iso) {
+                if (!iso) return "-";
+                const [y, m, d] = iso.split("-");
+                return `${d}-${m}-${y}`;
+            }
+
+            // Call on load if schedule exists
+            window.addEventListener("DOMContentLoaded", () => {
+                if (localStorage.getItem("matchSchedule")) {
+                    renderMatchListByDate();
+                }
+            });
+        </script>
+
+        <script>
+            function renderMatchListByTeam() {
+                const teams = JSON.parse(
+                    localStorage.getItem("teamNames") || "[]"
+                );
+                const matches = JSON.parse(
+                    localStorage.getItem("matchSchedule") || "[]"
+                );
+                const tbody = document.getElementById("matchListByTeamTable");
+                tbody.innerHTML = "";
+
+                teams.forEach(team => {
+                    const teamMatches = matches.filter(
+                        ({ teamA, teamB }) => teamA === team || teamB === team
+                    );
+
+                    teamMatches.forEach(({ teamA, teamB, date }, index) => {
+                        const tr = document.createElement("tr");
+
+                        // Pehla row mein team ka naam with rowspan
+                        if (index === 0) {
+                            const tdTeam = document.createElement("td");
+                            tdTeam.textContent = team;
+                            tdTeam.rowSpan = teamMatches.length;
+                            tdTeam.style.verticalAlign = "middle";
+                            tdTeam.style.fontWeight = "bold";
+                            tdTeam.style.backgroundColor = "#f9f9f9";
+                            tdTeam.style.textAlign = "center";
+                            if (
+                                team.includes("Zumanzoo™") ||
+                                team.includes("Matrix Sajal™")
+                            ) {
+                                tdTeam.style.textDecoration = "line-through";
+                                tdTeam.style.backgroundColor =
+                                    "rgba(255, 0, 0, 0.05)";
+                                tdTeam.style.fontWeight = "bold";
+                            }
+                            tr.appendChild(tdTeam);
+                        }
+
+                        const tdMatch = document.createElement("td");
+                        tdMatch.textContent =
+                            team === teamA
+                                ? `${teamA} vs ${teamB}`
+                                : `${team} vs ${teamA}`;
+                        if (
+                            team.includes("Zumanzoo™") ||
+                            team.includes("Matrix Sajal™")
+                        ) {
+                            tdMatch.style.textDecoration = "line-through";
+                            tdMatch.style.backgroundColor =
+                                "rgba(255, 0, 0, 0.05)";
+                            tdMatch.style.opacity = "80%";
+                        }
+
+                        const tdDate = document.createElement("td");
+                        tdDate.textContent = formatDate(date);
+
+                        if (
+                            team.includes("Zumanzoo™") ||
+                            team.includes("Matrix Sajal™")
+                        ) {
+                            tdDate.style.textDecoration = "line-through";
+                            tdDate.style.backgroundColor =
+                                "rgba(255, 0, 0, 0.05)";
+                            tdDate.style.opacity = "80%";
+                        }
+
+                        tr.appendChild(tdMatch);
+                        tr.appendChild(tdDate);
+                        tbody.appendChild(tr);
+                    });
+                });
+            }
+
+            // Date formatting function (same as used before)
+            function formatDate(iso) {
+                if (!iso) return "-";
+                const [y, m, d] = iso.split("-");
+                return `${d}-${m}-${y}`;
+            }
+
+            // Call on page load
+            window.addEventListener("DOMContentLoaded", () => {
+                if (
+                    localStorage.getItem("teamNames") &&
+                    localStorage.getItem("matchSchedule")
+                ) {
+                    renderMatchListByTeam();
+                }
+            });
+        </script>
+    </body>
+</html>
